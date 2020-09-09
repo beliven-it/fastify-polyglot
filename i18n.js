@@ -27,7 +27,7 @@ module.exports = fp(function (fastify, opts, next) {
   }
 
   const mergeLocales = (a = {}, b = {}) => {
-    const locales = {}
+    const locales = { ...a }
     Object.keys(b).forEach(key => {
       locales[key] = {
         ...a[key],
@@ -38,8 +38,8 @@ module.exports = fp(function (fastify, opts, next) {
   }
 
   const defaultLocale = opts.defaultLocale || 'en'
-  const localePath = opts.localePath || './locales'
-  const loadedLocales = getLocales(localePath)
+  const localesPath = opts.localesPath || './locales'
+  const loadedLocales = getLocales(localesPath)
   const locales = mergeLocales(opts.locales, loadedLocales)
 
   if (Object.keys(locales).indexOf(defaultLocale) === -1) {

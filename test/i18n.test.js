@@ -40,7 +40,7 @@ t.test('fastify-polyglot', async t => {
     const fastify = buildFastify(t)
     try {
       await fastify.register(require('../i18n'), {
-        localePath: path.join(__dirname, './locales')
+        localesPath: path.join(__dirname, './locales')
       })
       const locales = Object.keys(fastify.i18n.locales)
       t.same(locales, ['en'], 'should load locales from fs')
@@ -55,7 +55,27 @@ t.test('fastify-polyglot', async t => {
     const fastify = buildFastify(t)
     try {
       await fastify.register(require('../i18n'), {
-        localePath: path.join(__dirname, './locales'),
+        localesPath: path.join(__dirname, './locales'),
+        locales: {
+          it: {
+            hi: 'Ciao'
+          }
+        }
+      })
+      const locales = Object.keys(fastify.i18n.locales).sort()
+      t.same(locales, ['en', 'it'], 'should merge locales')
+    } catch (err) {
+      console.log(err)
+      t.error(err, 'should not throw any error')
+    }
+  })
+
+  t.test('with locales from both local and provided dictionaries with the same locale code', async t => {
+    t.plan(1)
+    const fastify = buildFastify(t)
+    try {
+      await fastify.register(require('../i18n'), {
+        localesPath: path.join(__dirname, './locales'),
         locales: {
           en: {
             world: 'World'
@@ -63,7 +83,7 @@ t.test('fastify-polyglot', async t => {
         }
       })
       const keys = Object.keys(fastify.i18n.locales.en).sort()
-      t.same(keys, ['hi', 'world'], 'should merge locales')
+      t.same(keys, ['hi', 'world'], 'should merge dictionaries')
     } catch (err) {
       console.log(err)
       t.error(err, 'should not throw any error')
