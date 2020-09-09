@@ -2,6 +2,8 @@
 
 A plugin to handle i18n using [node-polyglot](https://www.npmjs.com/package/node-polyglot)
 
+![Node.js CI](https://github.com/heply/fastify-polyglot/workflows/Node.js%20CI/badge.svg)
+
 ## Install
 
 ```bash
