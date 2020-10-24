@@ -8,6 +8,8 @@ const {
   ERR_MISSING_DICTIONARY_FOR_DEFAULT_LOCALE
 } = require('./errors')
 
+const ACCEPTED_EXTENSIONS = ['.js', '.json']
+
 module.exports = fp(function (fastify, opts, next) {
   const getLocales = basepath => {
     let contents = []
@@ -17,7 +19,13 @@ module.exports = fp(function (fastify, opts, next) {
       fastify.log.warn(err)
     }
     return contents
-      .filter(entry => entry.isFile())
+      .filter(entry => {
+        const ext = path.extname(entry.name)
+        return (
+          entry.isFile() &&
+          ACCEPTED_EXTENSIONS.indexOf(ext) !== -1
+        )
+      })
       .reduce((locales, entry) => {
         const name = entry.name.replace(/\.[^/.]+$/, '')
         const pathname = path.join(basepath, name)
