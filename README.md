@@ -27,7 +27,7 @@ console.log(fastify.i18n.t('Hello!'))
 // 'Ciao!'
 ```
 
-Alternatively, ypou can pass a path lo load locales from:
+Alternatively, you can pass a path lo load locales from:
 
 ```js
 const path = require('path')
