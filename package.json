@@ -1,6 +1,6 @@
 {
   "name": "fastify-polyglot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A plugin to handle i18n",
   "main": "i18n.js",
   "scripts": {
