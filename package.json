@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heply/fastify-polyglot.git"
+    "url": "git+https://github.com/beliven-it/fastify-polyglot.git"
   },
   "keywords": [
     "fastify",
@@ -17,12 +17,12 @@
     "polyglot",
     "localization"
   ],
-  "author": "Heply s.r.l.",
+  "author": "Beliven",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/heply/fastify-polyglot/issues"
+    "url": "https://github.com/beliven-it/fastify-polyglot/issues"
   },
-  "homepage": "https://github.com/heply/fastify-polyglot#readme",
+  "homepage": "https://github.com/beliven-it/fastify-polyglot#readme",
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-standard": "^14.1.1",
