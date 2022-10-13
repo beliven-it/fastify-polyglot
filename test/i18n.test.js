@@ -5,7 +5,7 @@ const { ERR_MISSING_DICTIONARY_FOR_DEFAULT_LOCALE } = require('../errors')
 
 function buildFastify (t) {
   const fastify = Fastify({ logger: false })
-  t.tearDown(() => fastify.close())
+  t.teardown(() => fastify.close())
   return fastify
 }
 
@@ -17,7 +17,7 @@ t.test('fastify-polyglot', async t => {
       await fastify.register(require('../i18n'))
       t.fail('should throw an error')
     } catch (err) {
-      t.true(err, 'should throw an error')
+      t.ok(err, 'should throw an error')
     }
   })
 
