@@ -1,7 +1,7 @@
 'use strict'
 
 const path = require('path')
-const { readdirSync } = require('fs')
+const { readdirSync, existsSync } = require('fs')
 const fp = require('fastify-plugin')
 const Polyglot = require('node-polyglot')
 const {
@@ -12,6 +12,10 @@ const ACCEPTED_EXTENSIONS = ['.js', '.json']
 
 module.exports = fp(function (fastify, opts, next) {
   const getLocales = basepath => {
+    if (!basepath || !existsSync(basepath)) {
+      fastify.log.warn('missing or invalid locales folder')
+      return {}
+    }
     let contents = []
     try {
       contents = readdirSync(basepath, { withFileTypes: true })

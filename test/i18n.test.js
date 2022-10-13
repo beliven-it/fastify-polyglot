@@ -30,7 +30,7 @@ t.test('fastify-polyglot', async t => {
       })
       t.fail('should throw an error')
     } catch (err) {
-      t.true(err, 'should throw an error')
+      t.ok(err, 'should throw an error')
       t.equal(err.message, ERR_MISSING_DICTIONARY_FOR_DEFAULT_LOCALE, 'should notify default locale is not present in locale dictionaries')
     }
   })
@@ -45,7 +45,27 @@ t.test('fastify-polyglot', async t => {
       const locales = Object.keys(fastify.i18n.locales)
       t.same(locales, ['en'], 'should load locales from fs')
     } catch (err) {
-      console.log(err)
+      console.error(err)
+      t.error(err, 'should not throw any error')
+    }
+  })
+
+  t.test('with a not existing locales folder', async t => {
+    t.plan(1)
+    const fastify = buildFastify(t)
+    try {
+      await fastify.register(require('../i18n'), {
+        localesPath: path.join(__dirname, './li18n'),
+        locales: {
+          en: {
+            world: 'World'
+          }
+        }
+      })
+      const locales = Object.keys(fastify.i18n.locales)
+      t.same(locales, ['en'], 'should use only provided locales without failing')
+    } catch (err) {
+      console.error(err)
       t.error(err, 'should not throw any error')
     }
   })
