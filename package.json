@@ -4,7 +4,7 @@
   "description": "A plugin to handle i18n",
   "main": "i18n.js",
   "scripts": {
-    "test": "npx tap -Rspec --coverage test/**/*.test.js"
+    "test": "npx tap test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -34,13 +34,12 @@
     "eslint-plugin-standard": "^4.0.1",
     "fastify": "^3.2.1",
     "fastify-sensible": "^3.0.1",
-    "tap": "^16.0.0"
+    "tap": "^18.7.1"
   },
   "dependencies": {
     "fastify-plugin": "^3.0.1",
     "node-polyglot": "^2.4.2"
   },
   "tap": {
-    "check-coverage": false
   }
 }
